@@ -1,5 +1,34 @@
+let buttonCounter = {
+    props:['min', 'max'],
+    template: `
+    <div>
+    <h1>Nombre aléatoire entre {{min}} et {{max}}: {{alea}}</h1>
+        <button v-on:click="aleatoire()">Générer un  nombre</button>
+    </div>`,
+    data: function () {
+      return {
+        alea: 0,
+      }
+    },
+    methods: {
+        aleatoire: function () {
+            this.alea = Math.floor(Math.random() * (this.max - this.min) + this.min)
+            console.log(typeof this.min);
+        },
+
+    },
+    mounted: function () {
+        this.aleatoire()
+    }
+   
+  }
+
+
 let vm = new Vue({
     el: '#app',
+    components: {
+        'button-counter': buttonCounter
+    },
     data: {
         nom: 'nouali',
         prenom: 'hamza',
@@ -77,14 +106,16 @@ let vm = new Vue({
 
 
 });
-Vue.component('button-counter', {
-    data: function () {
-        return {
-            count: 0
-        }
-    },
-    template: 
-    '<button v-on:click="count++">Vous m\'avez cliqué {{ count }} fois.</button> '
 
-  }),
-    new Vue({ el: '#components-demo' })
+
+
+
+
+
+
+
+
+
+
+
+
